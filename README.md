@@ -178,6 +178,3 @@ Add screenshots under `docs/screenshots/`, for example:
 3. Run the Spring Boot JAR.
 
 ---
-
-If you'd like, I can now commit this change locally and/or open a PR with the updated `README.md`.
-Which would you prefer?
