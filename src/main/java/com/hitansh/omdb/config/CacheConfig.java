@@ -1,24 +1,28 @@
 package com.hitansh.omdb.config;
 
-import com.github.benmanes.caffeine.cache.Caffeine;
-import com.github.benmanes.caffeine.cache.Cache;
+import java.time.Duration;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.concurrent.TimeUnit;
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 
 @Configuration
 public class CacheConfig {
-    
-    @Bean
-    public Caffeine<Object, Object> caffeineConfig(){
-        return Caffeine.newBuilder()
-                .expireAfterWrite(5,TimeUnit.MINUTES)
-                .maximumSize(200);
-    }
 
+    /**
+     * Creates a Caffeine cache bean that can be autowired as:
+     *   Cache<String, String>
+     *
+     * Tune maximumSize and expireAfterWrite to your needs.
+     */
     @Bean
-    public Cache<String, String> caffeineCache(Caffeine<Object, Object> caffeine){
-        return caffeine.build();
+    public Cache<String, String> caffeineCache() {
+        return Caffeine.newBuilder()
+                .maximumSize(10_000)                 // max entries in cache
+                .expireAfterWrite(Duration.ofMinutes(30)) // TTL
+                .recordStats()                       // optional: helpful for debugging
+                .build();
     }
 }
