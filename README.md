@@ -1,4 +1,4 @@
-git clone https://github.com/yourname/omdb-movie-explorer.git
+git clone https://github.com/code-curiosity/omdb-movie-explorer.git
 ### 📽️ OMDb Movie Explorer
 
 A full-stack movie search application using React and Spring Boot with Caffeine Cache. Search movies, view details, and manage favorites with a fast, cached backend.
